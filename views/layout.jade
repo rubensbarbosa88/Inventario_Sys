@@ -1,0 +1,65 @@
+doctype html
+html(ng-app="rbsApp")
+  head
+    title= title
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Baloo+Tamma" rel="stylesheet")
+    link(href="/bower/materialize/css/materialize.min.css", rel="stylesheet")
+    link(href="/bower/font-awesome/css/font-awesome.min.css", rel="stylesheet")
+    //- link(href="/bower/animate.css/animate.min.css", rel="stylesheet")
+    link(href='/stylesheets/style.css', rel='stylesheet')
+    script(src="/bower/angular/angular.min.js")
+    script(src="/bower/jquery/jquery.min.js")
+    script(src="/bower/angular-sanitize/angular-sanitize.min.js")
+    script(src="/bower/ng-csv/build/ng-csv.min.js")
+    script(src="/javascripts/main.js")
+    script(src="/javascripts/computersCtrl.js")
+    script(src="/javascripts/screensCtrl.js")
+    script(src="/javascripts/moveisCtrl.js")
+    script(src="/javascripts/othersCtrl.js")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(charset="UTF-8")
+    meta(name="author" content="Rubens Barbosa dos Santos")
+  body(ng-controller="#{ctlr}")
+    header
+        div.navbar-fixed
+            nav
+                div.nav-wrapper
+                    div.container
+                        a.brand-logo.left(href="/"): img.me.responsive-img(src="/images/logo.png")
+                        if cat || lk
+                            if cat == 'Home'
+                                span.brand-logo.center.htitle= cat
+                            else    
+                                span.brand-logo.center.htitle
+                                    a(href="/")=lk + " > " + " "
+                                    span= cat
+                        //- span.brand-logo.left(style='position:absolute;top:0;left: 500px') voltar <
+                    block head
+
+    block content
+    footer.page-footer.fot(ng-show="footer" ng-cloak)
+        div.footer-copyright.cop
+            div.container
+                span.grey-text.text-lighten-4.right Desenvolvido por Rubens Barbosa dos Santos  
+    script(src="/bower/materialize/js/materialize.min.js")
+    script.
+        $(function(){
+            //Botão Menu Mobile
+            $(".button-collapse").sideNav();
+            $('.tooltipped').tooltip({delay: 50});
+            $('.modal-trigger').leanModal();
+            $('.dropdown-button').dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrain_width: false, // Does not change width of dropdown to that of the activator
+                hover: false, // Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: true, // Displays dropdown below the button
+                alignment: 'left' // Displays dropdown with edge aligned to the left of button
+              }
+            );
+        });
+        
+
+    block scripts

@@ -1,0 +1,429 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  background-color: #263238;
+}
+.me {
+  margin: 8px auto;
+}
+@media (max-width: 600px) {
+  .me {
+    display: block;
+    margin: 4px auto;
+  }
+}
+.htitle {
+  font-size: 15px !important;
+}
+.dropdown-button i {
+  color: #80cbc4;
+}
+.dropdown-button i:hover {
+  color: #a7ffeb;
+}
+.fot {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: rgba(0,0,0,0.9) !important;
+}
+.fot .cop {
+  height: 70px !important;
+  padding-top: 10px;
+}
+.fot .cop span {
+  font-size: 1em;
+}
+@media (max-width: 610px) {
+  .fot .cop span {
+    font-size: 0.8em;
+  }
+}
+.oi {
+  border: 1px solid #f00;
+}
+.oi2 {
+  border: 1px solid #00f;
+}
+.oi3 {
+  border: 1px solid #008000;
+}
+#home {
+  background: url("/images/office.jpg") no-repeat;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+#home h1 {
+  color: #000;
+  text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+  font-family: 'Baloo Tamma', cursive;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 80px;
+  font-size: 6em;
+}
+.selecao {
+  margin: 50px auto;
+  height: 53.5vh;
+}
+.selecao a {
+  padding: 20%;
+  display: block;
+  text-align: center;
+  border: 1px solid #000;
+  border: 2px solid #039be5;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+.selecao a span {
+  color: rgba(255,255,255,0.3);
+  font-weight: bold;
+  display: block;
+}
+.selecao a:hover {
+  border: 2px solid #000;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  transition: 0.3s;
+  background-color: #039be5;
+}
+.selecao a:hover i {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  transition: 0.5s;
+  color: #fff;
+}
+.selecao a:hover span {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  transition: 0.5s;
+  color: #fff;
+  font-weight: bold;
+  display: block;
+}
+.mostrando {
+  margin-bottom: 0;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #969696;
+}
+.orderShow {
+  margin-top: 50px;
+  font-size: 0.8em;
+  font-style: italic;
+  color: #969696;
+}
+.orderShow span {
+  text-transform: uppercase;
+  text-decoration: underline;
+  color: rgba(0,0,0,0.9);
+  font-style: normal;
+}
+.order-pesq {
+  margin-top: 25px;
+  margin-bottom: 70px;
+}
+.order-pesq .teste {
+  margin-top: 20px;
+  margin-left: 160px !important;
+}
+@media (max-width: 1400px) {
+  .order-pesq .teste {
+    margin-top: 30px;
+    margin-left: 110px !important;
+  }
+}
+@media (max-width: 800px) {
+  .order-pesq .teste {
+    margin-top: 30px;
+    margin-left: 80px !important;
+  }
+}
+@media (max-width: 600px) {
+  .order-pesq .teste {
+    margin-top: 30px;
+    margin-left: 50px !important;
+  }
+}
+.order-pesq .teste i {
+  color: #b2dfdb;
+}
+.toast-max {
+  background-color: #e53935;
+  font-size: 2.2em;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+.toast-del-ok {
+  background-color: #80cbc4;
+  color: rgba(0,0,0,0.6);
+  font-size: 1.5em;
+  font-weight: bold;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+.formAdd {
+  margin-top: 60px;
+}
+.formAdd button {
+  margin-right: 10px;
+  float: right;
+}
+.erro-form {
+  border-bottom: 1px solid #f00 !important;
+}
+@media (max-width: 1500px) {
+  #computers .container {
+    width: 80% !important;
+  }
+}
+@media (max-width: 1200px) {
+  #computers .container {
+    width: 90% !important;
+  }
+}
+@media (max-width: 1100px) {
+  #computers .container {
+    width: 95% !important;
+  }
+}
+@media (max-width: 1000px) {
+  #computers .container {
+    width: 99% !important;
+  }
+}
+@media (max-width: 990px) {
+  #computers .container {
+    width: 90% !important;
+  }
+}
+.load-table {
+  margin: 150px auto 450px auto;
+  width: 66px;
+}
+.num {
+  font-size: 0.8em;
+  color: #000;
+}
+.btn-dropdown {
+  cursor: pointer;
+  opacity: 0.1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
+}
+.btn-dropdown i {
+  color: #000;
+}
+.btn-dropdown:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.btn-dropdown:hover i {
+  color: #90caf9;
+}
+.btnDelete {
+  cursor: pointer;
+  opacity: 0.1;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+  filter: alpha(opacity=10);
+}
+.btnDelete i {
+  color: #000;
+}
+.btnDelete:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.btnDelete:hover i {
+  color: #d50000;
+}
+table {
+  margin-top: 10px;
+  margin-bottom: 100px;
+}
+table thead .inf {
+  color: rgba(0,0,0,0.4);
+}
+table thead th a {
+  color: #141414;
+  cursor: pointer;
+}
+@media (max-width: 1400px) {
+  table thead th {
+    font-size: 0.95em;
+  }
+}
+table tbody .enfa {
+  background-color: rgba(255,0,0,0.6);
+  font-weight: bold;
+}
+table tbody td {
+  font-size: 0.97em;
+  position: relative;
+}
+@media (max-width: 1600px) {
+  table tbody td {
+    font-size: 0.88em;
+  }
+}
+@media (max-width: 1000px) {
+  table tbody td {
+    font-size: 0.88em;
+  }
+}
+@media (max-width: 990px) {
+  table tbody td {
+    font-size: 0.97em;
+  }
+}
+table tbody td .pat {
+  font-size: 0.8em;
+  padding: 15px;
+  color: #000;
+  font-weight: bolder;
+  background: url("/images/logo-small.png") rgba(170,170,170,0.8) no-repeat;
+  background-position: 30px 0;
+  border-bottom: 2px solid rgba(0,0,0,0.6);
+}
+table tbody td .dropdown {
+  width: 120px;
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+}
+table tbody td .dropdown li:nth-child(3) {
+  margin: 10px 0;
+}
+table tbody td .dropdown li:nth-child(4) {
+  text-align: center;
+}
+table tbody td .dropdown li:nth-child(4) a {
+  font-size: 0.9em;
+  color: rgba(0,0,0,0.8);
+}
+table tbody td .dropdown li:nth-child(4) a:hover {
+  color: #000;
+}
+table tbody td .dropdown li {
+  margin: 10px 10px;
+  font-size: 1.1em;
+}
+table tbody td .dropdown li .btnEdit {
+  cursor: pointer;
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+  display: block;
+  border: 1px solid transparent;
+}
+table tbody td .dropdown li .btnEdit i {
+  color: #000;
+}
+table tbody td .dropdown li .btnEdit span {
+  vertical-align: middle;
+  color: #000;
+  font-size: 0.9em;
+}
+table tbody td .dropdown li .btnEdit:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+table tbody td .dropdown li .btnEdit:hover i {
+  color: #01579b;
+}
+table tbody td .dropdown li .btnEdit:hover span {
+  color: #01579b;
+}
+table tbody td .dropdown li .btnDelete {
+  cursor: pointer;
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+  display: block;
+  border: 1px solid transparent;
+}
+table tbody td .dropdown li .btnDelete i {
+  color: #000;
+}
+table tbody td .dropdown li .btnDelete span {
+  vertical-align: middle;
+  color: #000;
+  font-size: 0.9em;
+}
+table tbody td .dropdown li .btnDelete:hover {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+table tbody td .dropdown li .btnDelete:hover i {
+  color: #d50000;
+}
+table tbody td .dropdown li .btnDelete:hover span {
+  color: #d50000;
+}
+.btns {
+  margin: 50px auto;
+}
+.btns .mplus {
+  margin: 0 auto;
+  width: 60px;
+}
+.btns .mlow {
+  margin: 0 auto;
+  width: 60px;
+}
+#modal2 .modal-footer a strong {
+  font-size: 1.5em;
+}
+#modal2 .modal-content {
+  padding: 0 !important;
+}
+#modal2 .modal-content a {
+  margin: 0 40px;
+  font-size: 0.8em;
+}
+#modal2 .modal-content h4 {
+  background-color: #01579b;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+#modal2 .modal-content div {
+  margin: 20px auto;
+  text-align: center;
+}
+#modal2 .modal-content div figure {
+  padding: 10px 0;
+}
+#modal2 .modal-content div figure a {
+  display: block;
+}
+#modal2 .modal-content div figure h3 {
+  margin: 0 10px;
+  display: inline-block;
+}
+#modal2 .modal-content div figure figcaption span {
+  margin: 0 10px;
+  font-size: 0.9em;
+  color: #8c8c8c;
+}
+#modal2 .modal-content div figure figcaption span strong {
+  color: #000;
+}
+.btn-mod {
+  margin-left: 20px !important;
+}

@@ -1,0 +1,276 @@
+extends layout
+
+block head
+    div.container
+        a.dropdown-button.right(href='#' data-activates='dropdown1') 
+            i.material-icons reorder
+        ul.dropdown-content(id="dropdown1")
+            li
+                a(ng-click="showForm()") Novo item
+            li
+                a(ng-csv="arrayCsv"  csv-header="['Patrimônio', 'Item','Marca','Modelo','Serial Number','Usuario','Departamento','Referencia','Modelo-link-imagem','NF-link-imagem']" filename="inventario.computadores.comune.csv") Exportar lista(CSV)
+    
+block content
+    section(id="screens")
+        div.container
+            //---FORM ADD NEW ITEM
+            form.formAdd(ng-submit="enviar(formAdd)" ng-show="formShow" name="formAdd" ng-cloak novalidate)
+                div.row
+                    div.col.s12.m3.l3.input-field
+                        //-numeração
+                        input(name="number" id="number" disabled type="text" placeholder="{{itens.length + 1}}" required)
+                        label(for="number") Nº
+                    div.col.s12.m3.l3.input-field
+                        //-patrimonio
+                        input(name="patrimonio" id="patrimonio" type="text" ng-model="itemObj.patrimonio" ng-class="{'erro-form': formAdd.$invalid && submitted}" required)
+                        label(for="patrimonio") Patrimônio
+                    div.col.s12.m3.l3.input-field
+                        //-tipo
+                        input(name="tipo" id="tipo" type="text" ng-model="itemObj.tipo" ng-class="{'erro-form': formAdd.$invalid && submitted}" required)
+                        label(for="tipo") Item
+                    div.col.s12.m3.l3.input-field
+                        //-marca
+                        input(name="marca" id="marca" type="text" ng-model="itemObj.marca")
+                        label(for="marca") Marca
+                    div.col.s12.m3.l3.input-field
+                        //-modelo
+                        input(name="modelo" id="modelo" type="text" ng-model="itemObj.modelo")
+                        label(for="modelo") Modelo
+                    div.col.s12.m3.l3.input-field
+                        //-serial
+                        input(name="serial" id="serial" type="text" ng-model="itemObj.sn" ng-class="{'erro-form': formAdd.$invalid && submitted}")
+                        label(for="serial") Numero de Série
+                    div.col.s12.m3.l3.input-field
+                        //-user
+                        input(name="usuario" id="usuario" type="text" ng-model="itemObj.user")
+                        label(for="usuario") Usuário
+                    div.col.s12.m3.l3.input-field
+                        //-departamento
+                        input(name="departamento" id="departamento" type="text" ng-model="itemObj.departamento")
+                        label(for="departamento") Departamento
+                    div.col.s12.m3.l3.input-field
+                        //-referencia
+                        input(name="reerencia" id="referencia" type="text" ng-model="itemObj.ref" ng-class="{'erro-form': formAdd.$invalid && submitted}" required)
+                        label(for="referencia") Referência
+                    div.col.s12.m3.l3.input-field
+                        //-itemImg
+                        input(name="itemImg" id="itemImg" type="text" ng-model="itemObj.itemImg")
+                        label(for="itemImg") Imagem do item (URL)
+                    div.col.s12.m3.l3.input-field
+                        //-imgNf
+                        input(name="imgNf" id="imgNf" type="text" ng-model="itemObj.imgNf")
+                        label(for="imgNf") Imagem da Referência (URL)
+
+
+                    button.btn.waves-effect.light-blue.accent-4(type="submit") Adicionar
+                        i.material-icons.right library_add 
+            //-form           
+            
+            //---ORDENADO POR...
+            div.order-pesq
+                div.row
+                    div.col.s6
+                        p.orderShow Ordenado por : #[span(ng-bind="orderShow")]               
+                    div.input-field.col.s4.teste
+                        i.material-icons.prefix search
+                        label(for="search") Pesquisar
+                        input(type="search" ng-model="procurar" id="search")
+            //-ordenado
+            
+            //---MOSTRANDO x DE x
+            div.mostrando.right-align(ng-show="mostrando")
+                span Mostrando #[span(ng-bind="botao")] de #[span(ng-bind="itens.length")] itens
+            //-mostrando
+
+            //- div(style="height: 86vh; display: visible" ng-hide="fake")
+        
+            //---PRELOAD TABLE
+            div.load-table(ng-hide="load_table" ng-cloak)
+                div.preloader-wrapper.big.active
+                    div.spinner-layer.spinner-blue
+                        div.circle-clipper.left
+                            div.circle
+                        div.gap-patch
+                            div.circle
+                        div.circle-clipper.right
+                            div.circle
+                    div.spinner-layer.spinner-red
+                        div.circle-clipper.left
+                            div.circle
+                        div.gap-patch
+                            div.circle
+                        div.circle-clipper.right
+                            div.circle
+                    div.spinner-layer.spinner-yellow
+                        div.circle-clipper.left
+                            div.circle
+                        div.gap-patch
+                            div.circle
+                        div.circle-clipper.right
+                            div.circle
+                    div.spinner-layer.spinner-green
+                        div.circle-clipper.left
+                            div.circle
+                        div.gap-patch
+                            div.circle
+                        div.circle-clipper.right
+                            div.circle
+            //-preload
+
+     
+            //---TABLE ITENS
+            table.striped.bordered.responsive-table(ng-show="table_itens" ng-cloak)
+                thead
+                    tr
+                        th(data-field="count"): a Nº
+                        th(data-field="pat"): a.tooltipped(ng-click="pat()" data-position="top" data-tooltip="Ordenar pelo numero de patrimonio") Patrimonio
+                        th(data-field="iten"): a.tooltipped(ng-click="tipo()" data-position="top" data-tooltip="Ordenar por tipo") Tipo
+                        th(data-field="marca"): a.tooltipped(ng-click="marca()" data-position="top" data-tooltip="Ordenar por marca") Marca
+                        th(data-field="modelo"): a.tooltipped(ng-click="modelo()" data-position="top" data-tooltip="Ordenar por modelo") Modelo
+                        th(data-field="sn"): a.tooltipped(ng-click="sn()" data-position="top" data-tooltip="Ordenar por numero de serie") Serial Number
+                        th(data-field="user"): a.tooltipped(ng-click="user()" data-position="top" data-tooltip="Ordenar por usuário") Usuário
+                        th(data-field="departamento"): a.tooltipped(ng-click="departamento()" data-position="top" data-tooltip="Ordenar por Departamento") Departamento
+                        th(data-field="ref"): a.tooltipped(ng-click="ref()" data-position="top" data-tooltip="Ordenar por referencia") Referencia
+                tbody
+                  tr(ng-repeat="iten in itens | orderBy: order | filter: procurar | limitTo : botao ")
+                    //-numero
+                    td
+                        span.num(ng-bind="$index + 1")
+                    //-patrimonio
+                    td
+                        span.pat(ng-bind="iten.patrimonio" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.patrimonio" ng-show="iten.editing" ng-cloak)
+
+                    //-item
+                    td
+                        span(ng-bind="iten.tipo" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.tipo" ng-show="iten.editing" ng-cloak)
+                    //-marca
+                    td
+                        span(ng-bind="iten.marca" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.marca" ng-show="iten.editing" ng-cloak)
+                    //-modelo
+                    td
+                        span(ng-bind="iten.modelo" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.modelo" ng-show="iten.editing" ng-cloak)
+                    //-serial
+                    td
+                        span(ng-bind="iten.sn" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.sn" ng-show="iten.editing" ng-cloak)
+                    //-user
+                    td
+                        span(ng-bind="iten.user" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.user" ng-show="iten.editing" ng-cloak)
+                    //-departamento
+                    td
+                        span(ng-bind="iten.departamento" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.departamento" ng-show="iten.editing" ng-cloak)
+                    //-referemcia
+                    td
+                        span(ng-bind="iten.ref" ng-hide="iten.editing" ng-cloak)
+                        input(type="text" ng-model="iten.ref" ng-show="iten.editing" ng-cloak)                   
+                         
+                    td
+                        a.btn-dropdown(ng-hide="iten.editing" ng-click="hoverIn(iten)" ng-cloak)
+                            i.fa.fa-2x.fa-ellipsis-v(aria-hidden="true")
+                        a.btn-floating.waves-effect.white.light-blue.accent-4.btnUpdate(ng-click="update(iten._id, iten)" ng-show="iten.editing" ng-cloak)
+                             i.material-icons done_all
+                        //-
+                        ul.dropdown.z-depth-2(ng-show="iten.dropdown" ng-mouseleave="hoverOut(iten)" ng-cloak)
+                            li
+                                a.btnEdit(ng-click="iten.editing = true; iten.dropdown = false" ng-hide="iten.editing" ng-cloak)
+                                    i.material-icons.left mode_edit
+                                    span Editar
+                            li
+                                a.btnDelete(ng-hide="iten.editing" ng-click="delete(iten._id, iten)" ng-cloak)
+                                    i.material-icons.left delete
+                                    span Deletar
+                            li.divider
+                            li: a(ng-click="detals(iten)" style="cursor:pointer") Detalhes
+                    td
+                        a.btn-floating.waves-effect.white.blue-grey.darken-1(ng-click="iten.editing=false" ng-show="iten.editing" ng-cloak)
+                             i.material-icons visibility_off
+            //-table-itens
+
+            //---BTNS PLUS AND LESS
+            div.row.btns
+                div.col.s6.m6.l6
+                    div.mplus
+                        a.btn-floating.btn-large.waves-effect.waves-light.tooltipped(ng-click="mplus()" ng-model="botao" data-position="top" data-tooltip="Mostrar +10 itens" ng-show="btn_plus" ng-cloak) +10
+
+                div.col.s6.m6.l6
+                    div.mlow
+                        a.btn-floating.btn-large.waves-effect.waves-light.red(ng-click="mlow()" ng-model="botao" data-position="top" data-tooltip="Mostrar -10 itens" ng-show="btn_less" ng-cloak) -10
+            //-btns
+
+            //---MODAL-1
+            div.modal(id="modal1")
+                div.modal-content
+                  h4 Você Tem certeza ?
+                  br
+                  p Isso excluira os seguintes dados : 
+                  table
+                    thead
+                        tr.inf
+                            th Patrimônio
+                            th Tipo
+                            th Marca
+                            th Modelo
+                            th Serial Number
+                            th Usuário
+                            th Departamento
+                            th Referência
+                    tbody
+                        tr.enfa
+                            td {{description.patrimonio}}
+                            td {{description.tipo}}
+                            td {{description.marca}}
+                            td {{description.modelo}}
+                            td {{description.sn}}
+                            td {{description.user}}
+                            td {{description.departamento}}
+                            td {{description.ref}}
+                div.modal-footer
+                  a.modal-action.modal-close.waves-effect.red.darken-4.btn.btn-mod(ng-click="sim()") Sim
+               
+                  a.modal-action.modal-close.waves-effect.btn.btn-mod(ng-click="nao()") Não
+            //-modal-1
+            
+            //---MODAL-2
+            div.modal(id="modal2")
+                div.modal-content
+                    h4 ITEM PATRIMÔNIO: #[strong(ng-bind="description.patrimonio")]
+                    br
+                    br
+                    div.row(ng-show="description.edit" ng-cloak)
+                        div.input-field.col.s12
+                            label(for="itemImg") Imagem do Item
+                            input(id="itemImg" type="text" placeholder="Insira a URL referente a imagem do item" ng-model="description.itemImg")
+                        div.input-field.col.s12
+                            label(for="imgNf") Imagem da Referencia(NF)
+                            input(id="itemImg" type="text" placeholder="Insira a URL referente a imagem da referencia(NF)" ng-model="description.imgNf")
+                        a.btn(ng-click="update(description._id, description)") Concluido
+
+                    div(ng-hide="description.edit" ng-cloak)
+                        figure.z-depth-1
+                            div
+                                h3(ng-bind="description.marca")
+                                h3(ng-bind="description.modelo")
+                            img.responsive-img(src="{{description.itemImg}}")
+                            figcaption
+                                span patrimônio:#[strong(ng-bind="description.patrimonio")]
+                                span serial number:#[strong(ng-bind="description.sn")]
+                                span departamento:#[strong(ng-bind="description.departamento")]
+                                span usuário:#[strong(ng-bind="description.user")]
+                    div(ng-hide="description.edit" ng-cloak)
+                        figure.z-depth-1
+                            div
+                                h3(ng-bind="description.ref")
+                            a(href="{{description.imgNf}}" target="_blank")
+                                img.responsive-img(src="{{description.imgNf}}")
+                    a.btn.indigo.darken-1(ng-click="description.edit=true" ng-hide="description.edit" ng-cloak) Editar
+                div.modal-footer
+                  a.modal-action.modal-close.waves-effect.waves-green.btn-flat: strong X
+            //-modal-2
+
+ //- block scripts
